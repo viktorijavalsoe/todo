@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Style sheets-->
+  <link type="text/css" rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/to_do_list.css">
+
+  <!--Font Awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Google Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500|Roboto:300,400" rel="stylesheet">
+
+  <title>ToDoist</title>
+
+</head>
+
+<body onload="printDate()">
+
+  <header class="header_container">
+    <h1 class="header">ToDo List</h1>
+    <p id="date"></p>
+  </header>
+
+  <main>
+
+    <img class="moskot_image" src="images/bunny.svg" alt="bunny">
+
+    <section class="form_container">
+      <input class="task_input" type="text" id="item" placeholder="Enter a task...">
+      <button class="add_button" id="add"><img class="add" src="images/add.svg" alt="plus"></button>  
+    </section>  
+    
+  
+   
+    <section class="todo_container">
+      <h3>UPCOMING</h3>
+      <ul class="todolist" id="todo">
+      </ul>  
+
+      <button class="sort_button" id="sort">ABC...</button>
+       
+      <h3>DONE</h3>
+     <!-- Completed tasks -->
+       <ul class="todolist" id="completed">
+
+       </ul>
+    </section>
+
+
+  </main>
+
+  
+
+
+  <!-- JavaScript files-->
+  <script src="js/to_do_list1.js"></script>
+</body>
+</html>
