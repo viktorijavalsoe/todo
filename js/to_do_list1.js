@@ -20,13 +20,25 @@ var removeSVG = '<svg class="svg" version="1.1" id="Layer_1" xmlns="http://www.w
 var completeSVG = '<svg version="1.1" id="complete_icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><style type="text/css">.st0{fill:#FFFFFF;stroke:#74B1BB;stroke-width:2;stroke-miterlimit:10;}.st1{fill:none;stroke:#74B1BB;stroke-width:4;stroke-linecap:round;stroke-miterlimit:10;}</style><rect x="61" y="6" width="0" height="2"/><circle class="st0" cx="25" cy="25" r="24"/><polyline class="st1" points="16.1,21.9 25.1,36 34.4,15 "/></svg>'
 
 
-//if there are saved value in local storage return them, if not start en array with one hardcoded value
-var data = (localStorage.getItem('todoList'))? JSON.parse(localStorage.getItem('todoList')) : {
-  todo: ["create invoice for Looklet"],
-  completed: []
-};
+
+// Store sata in an object wit h two different arrays todo & completed
+
+
+var data = localStorage.getItem("todoList");
+if (data != null) {
+  data = JSON.parse(localStorage.getItem("todoList"));
+} else {
+  var data = {
+    todo : ["create invoice"], 
+    completed:[] 
+  }
+  
+  };
+  console.log(data);
 
 renderTodoList();
+
+dataObjectUpdated();
 
 document.getElementById("add").addEventListener("click", function(){
   var value = document.getElementById('item').value;
@@ -35,17 +47,14 @@ document.getElementById("add").addEventListener("click", function(){
   } 
 });
 
-
 function addItem(value) {
 
     addItemToDOM(value);
     document.getElementById('item').value = '';
-    
     // Add value to the data Array with key todo
     data.todo.push(value); 
     dataObjectUpdated();
 }
-
 
 function renderTodoList(){
   //if both the todo and the complete are empty close function
@@ -63,10 +72,10 @@ function renderTodoList(){
   }
 }
 
+
 // Updates LocalStorage
 function dataObjectUpdated(){
-
-  localStorage.setItem("todoList", JSON.stringify(data));
+ localStorage.setItem("todoList", JSON.stringify(data));
 }
 
 // This function REMOVES item from the list
@@ -123,7 +132,7 @@ function addItemToDOM(text, completed){
   var list = (completed) ? document.getElementById('completed') : document.getElementById('todo');
 
   var item = document.createElement('li');
-  item.textContent = text;
+  item.innerText = text;
  
   var buttons = document.createElement('div');
   buttons.classList.add('buttons');
