@@ -21,20 +21,18 @@ var completeSVG = '<svg version="1.1" id="complete_icon" xmlns="http://www.w3.or
 
 
 
-// Store sata in an object wit h two different arrays todo & completed
-
+// Store data in an object wit h two different arrays todo & completed
 
 var data = localStorage.getItem("todoList");
+
 if (data != null) {
   data = JSON.parse(localStorage.getItem("todoList"));
 } else {
   var data = {
-    todo : ["create invoice"], 
+    todo : [], 
     completed:[] 
   }
-  
-  };
-  console.log(data);
+};
 
 renderTodoList();
 
@@ -71,7 +69,6 @@ function renderTodoList(){
     addItemToDOM(value, true);
   }
 }
-
 
 // Updates LocalStorage
 function dataObjectUpdated(){
@@ -161,12 +158,8 @@ function addItemToDOM(text, completed){
 }
 
 
-/* SORT ALPHABETICALLY
-
 document.getElementById("sort").addEventListener("click", sortList);
 
-
-// The inserting does not work!!!!
 function sortList(){
   var todoContainer = document.getElementById('todo');
   //gather all the LI's from the container
@@ -176,26 +169,28 @@ function sortList(){
   for (var i = 0; i < todoLis.length; i++){
     todoItems.push(todoLis[i]);
   }
-  
-  // sort based on innerText
-  todoItems.sort(function(a,b){
-    var aa = parseInt(a.innerText);
-    var bb = parseInt(b.innerText);
-    // if integer value is higher sort item higher in the list
-    return aa < bb ? -1 : (aa > bb ? 1 : 0);
-  });
 
-  // reverse out list to be in aphabetical order
-  todoItems.reverse();
+  // sort based on innerText
+
+  todoItems.sort(function(a, b){
+    if (a.innerText.toLowerCase() < b.innerText.toLowerCase()) {
+        return 1;
+    }
+    if (a.innerText.toLowerCase() > b.innerText.toLowerCase()) {
+        return -1;
+    }
+    return 0;
+  });
 
   for (var i = 0; i < todoItems.length; i ++){
     console.log(todoItems[i].innerText);
     //Insert <li>  with a letter with lowest integer value before the first child of <ul> todo
     todoContainer.insertBefore(todoItems[i], todoContainer.childNodes[0]);
   }
+
 }
 
-*/
+
 
   
 
