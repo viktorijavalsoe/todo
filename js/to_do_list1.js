@@ -24,12 +24,21 @@ var completeSVG = '<svg version="1.1" id="complete_icon" xmlns="http://www.w3.or
 // Store data in an object wit h two different arrays todo & completed
 
 var data = localStorage.getItem("todoList");
+console.log(data);
 
 if (data != null) {
   data = JSON.parse(localStorage.getItem("todoList"));
+
+  if(data.todo.length == 0 && data.completed.length == 0)
+  {
+    var data = {
+      todo : ["implement JQuery UI", "potato"], 
+      completed:[] 
+    }
+  }
 } else {
   var data = {
-    todo : [], 
+    todo : ["implement JQuery UI", "potato"], 
     completed:[] 
   }
 };
@@ -65,7 +74,7 @@ function renderTodoList(){
   }
 
   for (var j = 0; j < data.completed.length; j ++){
-    var value = data.completed[i];
+    var value = data.completed[j];
     addItemToDOM(value, true);
   }
 }
@@ -110,6 +119,7 @@ function completeItem(){
     data.completed.push(value);
   } else {
     data.completed.splice(data.completed.indexOf(value), 1);
+    console.log(value);
     data.todo.push(value);
   } 
 
@@ -189,19 +199,3 @@ function sortList(){
   }
 
 }
-
-
-
-  
-
-
-
- 
-  
-
-
-
-
-
-
-
